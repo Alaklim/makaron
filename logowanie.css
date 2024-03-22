@@ -1,0 +1,61 @@
+body{
+    background-color: rgb(253, 249, 190);
+}
+nav h1{
+    float: left;
+    margin-left: 40px;
+    background-color: #ffff00e7;
+    border-radius: 15px;
+    padding: 1px;
+    font-size: xx-large;
+}
+nav h2{
+    float: right;
+    margin-right: 40px;
+    background-color: #ffff00e7;
+    border-radius: 15px;
+    padding: 4px;
+}
+nav{
+    background-image: url(png/pasta.jpg);
+    height: 90px;
+    color: #4e3500;
+}
+.log{
+    background-color: #ffffe9e7;
+    border-radius: 20px;
+    width: 20%;
+    height: 30vh;
+    margin-left: 40%;
+    margin-top: 10vh;
+    text-align: center;
+}
+label{
+    margin-top: 30px;
+    font-size: xx-large;
+    color: #4e3500;
+}
+input{
+    margin-top: 30px;
+    background-color: #ffffe9;
+    border-radius: 10px;
+    height: 25px;
+    font-size: x-large;
+}
+button{
+    height: 40px;
+    width: 70px;
+    border-radius: 15px;
+    margin-top: 20px;
+    background-color: rgb(253, 249, 190);
+    box-shadow: -1px 1px 10px 1px #4e350041;
+    transform: scale(1);
+    transition: .3s;
+    font-size: larger;
+}
+button:hover{
+    transform: scale(1.1);
+}
+#email{
+    margin-top: 8vh;
+}

@@ -1,0 +1,35 @@
+<!--<?php 
+    session_start();
+?>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logowanie.css">
+    <title>Makaronix</title>
+</head>
+<!--<?php 
+        $serwer = 'localhost';
+        $uzytkownik = 'root';
+        $haslo = '';
+        $baza = 'makaronix'; 
+
+        $poloczenie = mysqli_connect($serwer, $uzytkownik, $haslo, $baza);
+?>-->
+<body>
+    <nav>
+        <h1>MAKARONIX</h1>
+        <h2><a>wróć do sklepu</a></h2>
+    </nav>
+    <section class="log">
+    <form method="post" action="logowanie.php">
+        <label for="email">email: </label><input id="email" name="email" type="text"><br>
+        <label for="haslo">hasło: </label><input id="haslo" name="haslo" type="password"><br>
+        <button type="submit" name="ok">zaloguj</button><br>
+        <p>nie masz konta?</p><br>
+        <button type="submit" name="not-ok">rejestracja</button>
+    </form>
+    </section>
+</body>
+</html>
