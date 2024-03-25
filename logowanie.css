@@ -25,7 +25,7 @@ nav{
     background-color: #ffffe9e7;
     border-radius: 20px;
     width: 20%;
-    height: 30vh;
+    height: 42vh;
     margin-left: 40%;
     margin-top: 10vh;
     text-align: center;
@@ -44,7 +44,7 @@ input{
 }
 button{
     height: 40px;
-    width: 70px;
+    width: 100px;
     border-radius: 15px;
     margin-top: 20px;
     background-color: rgb(253, 249, 190);
@@ -58,4 +58,8 @@ button:hover{
 }
 #email{
     margin-top: 8vh;
+}
+#rejest{
+    width: 100px;
+    height: 50px;
 }

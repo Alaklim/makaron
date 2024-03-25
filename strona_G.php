@@ -21,7 +21,13 @@
     <nav>
         <h1>MAKARONIX</h1>
         <h2><a>koszyk</a></h2>
-        <h2><a>Zaloguj sie</a></h2>
+        <?php 
+            if($_SESSION['zaloguj'] = 1){
+                echo "<h2><a href='logowanie.php'>wyloguj się</a></h2>";
+            }else{ 
+                echo "<h2><a href='logowanie.php'>Zaloguj sie</a></h2>";
+            }
+        ?>
     </nav>
     <section class="info-one">
         <img src="png/makaron.png" id="ban" class="active">
@@ -42,6 +48,7 @@
                         $_SESSION['d'] = $r;
                         echo "<form method='post' action='item.php'><button type='submit' name='button' value='{$r}'>Wejdz</button></form>";
                     echo "</div>"; 
+                    $_SESSION['nazw'] = $wyk['nazwa'];
                 }
             
             ?>
