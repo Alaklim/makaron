@@ -19,10 +19,20 @@
 ?>
 <body>
     <nav>
-        <h1>MAKARONIX</h1>
-        <h2><a>Zaloguj sie</a></h2>
+   <?php if($_SESSION['zalog'] == 1){
+                echo "<div id='wyg'><form method='post' action='strona_G.php'><button type='submit' name='wyga' id='wyga'>wyloguj się</button></div>";
+                if(isset($_POST['wyga'])){
+                    $_SESSION['zalog'] = 0;
+                    header("Refresh:0");
+                }
+            }else{ 
+                echo "<h2><a href='logowanie.php'>Zaloguj sie</a></h2>";
+            }
+        ?>
     </nav>
     <?php 
+    error_reporting(0);
+    if($_SESSION['admin'] == 0){
         echo "<h1 id='h1'>{$_SESSION['nazwa']}</h1>";
         echo "<section class='produkty-item'>";
          if(isset($_POST['button']) != 0){
@@ -49,46 +59,65 @@
         }else{
                 $liczba = $_POST['liczba'];
                 $ilosc = $_SESSION['kosztt'] * $liczba;
-                echo $_SESSION['kosztt']. " 1<br>";
-                echo $liczba. " 2<br>";
-                echo $ilosc. "3";
 
                 for($i=1; $i < 9; $i++){
-                    if($ide == $i){
+                    if($_SESSION['ide'] == $i){
                         $_SESSION['mk-'. $i] = $liczba;
-                        $_SESSION[$i] = $ilosc;
+                        $_SESSION['m'. $i] = $ilosc;
+                        break;
                     }
-                }
+                };
                         
-                         /*if($ide == 1){
-                                 $_SESSION['mk-one'] = $liczba;
-                                 $_SESSION['one'] = $ilosc;
-                         }else if($ide == 2){
-                                 $_SESSION['mk-two'] = $liczba;
-                                 $_SESSION['two'] = $ilosc;
-                         }else if($ide == 3){
-                                 $_SESSION['mk-tree'] = $liczba;
-                                 $_SESSION['tree'] = $ilosc;
-                         }else if($ide == 4){
-                                 $_SESSION['mk-four'] = $liczba;
-                                 $_SESSION['four'] = $ilosc;
-                         }else if($ide == 5){
-                                 $_SESSION['mk-five'] = $liczba;
-                                 $_SESSION['five'] = $ilosc;
-                         }else if($ide == 6){
-                                 $_SESSION['mk-six'] = $liczba;
-                                 $_SESSION['six'] = $ilosc;
-                         }else if($ide == 7){
-                                 $_SESSION['mk-seven'] = $liczba;
-                                 $_SESSION['seven'] = $ilosc;
-                         }else if($ide == 8){
-                                 $_SESSION['mk-ehh'] = $liczba;
-                                 $_SESSION['ehh'] = $ilosc;
-                         }*/
+
             echo "<h1 id='h1'>Zaakceptowane mordeczko</h1>";
             echo "<div class='butt'><form action='koszyk.php'><button type='submit'name='kosz'>przejdz do kosza</button></form>";
             echo "<form action='strona_G.php'><button type='submit'>strona główna</button></form></div>";
-        }
+        }}else{
+            echo "<h1 id='h1'>{$_SESSION['nazw']}</h1>";
+        echo "<section class='produkty-item'>";
+         if(isset($_POST['button']) != 0){
+
+        $ide = $_POST['button'] + 1;
+                    
+            $wynik = mysqli_query($poloczenie, "SELECT * FROM `produkty` WHERE id=$ide");
+            while($r = mysqli_fetch_array($wynik)){
+            echo "<div class='forek'>";
+            echo "<img src='data:image/png;base64," . base64_encode($r['obraz']) . "'>";
+            echo "<div id='opis'>
+            <form method='post'>";
+            echo "<label for='nazwa'>nazwa:</label><input type='text' value=" . $r['nazwa'] . " id='nazwa' name='nazwa'><br>";
+            echo "<label for='opis'>opis:</label><textarea id='opis' name='opis'>" . $r['opis'] . "</textarea><br>";
+            echo "<label for='imie'>imie:</label><textarea id='imie' name='imie'>" . $r['przepis'] . "</textarea><br>";
+            echo "<label for='imie'>imie:</label><input type='number' value=" . $r["koszt"] . " id='imie' name='imie'><br>";
+            echo "<label for='cos'></label><input type='hidden' id='cos' name='id' value=". $r['id']."><br>";
+            echo "<form method='post'><button name='edyt'>zapisz</button></form>";
+            echo "<form action='strona_G.php'><button>strona główna</button></form></form>";
+            echo "</div>";
+            if(isset($_POST["edyt"])){
+                $nazwa = $_POST['nazwa'];
+                 $opis = $_POST['opis'];
+                 $przepis = $_POST['przepis'];
+                 $koszt = $_POST['koszt'] ;
+        
+                 if($nazwa != "" && $opis != "" && $przepis != "" && $koszt != ""){
+                    $rowId = $_SESSION['xd'];
+                    var_dump("UPDATE `produkty` SET `nazwa` = '$nazwa', `opis` = '$opis', `przepis` = '$przepis', `koszt` = '$koszt' WHERE `produkty`.`id` = $rowId");
+                     mysqli_query($poloczenie, "UPDATE `produkty` SET `nazwa` = '$nazwa', `opis` = '$opis', `przepis` = '$przepis', `koszt` = 'koszt' WHERE `produkty`.`id` = $rowId;;");
+                     header("Refresh:0");
+                 }
+                 else{
+                     echo "nah";
+                 }
+              };
+            
+            }
+        }else{
+            
+                        
+            echo "<h1 id='h1'>Zaakceptowane mordeczko</h1>";
+            echo "<div class='butt'><form action='koszyk.php'><button type='submit'name='kosz'>przejdz do kosza</button></form>";
+            echo "<form action='strona_G.php'><button type='submit'>strona główna</button></form></div>";
+        }}
         echo "</div>";
     echo "</section>";
     ?>

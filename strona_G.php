@@ -20,13 +20,19 @@
 <body>
     <nav>
         <h1>MAKARONIX</h1>
-        <h2><a>koszyk</a></h2>
+        <h2><a href='koszyk.php'>koszyk</a></h2>
         <?php 
-            if($_SESSION['zaloguj'] = 1){
-                echo "<h2><a href='logowanie.php'>wyloguj się</a></h2>";
+        error_reporting(0);
+            if($_SESSION['zalog'] == 1){
+                echo "<div id='wyg'><form method='post' action='strona_G.php'><button type='submit' name='wyga' id='wyga'>wyloguj się</button></div>";
+                if(isset($_POST['wyga'])){
+                    $_SESSION['zalog'] = 0;
+                    header("Refresh:0");
+                }
             }else{ 
                 echo "<h2><a href='logowanie.php'>Zaloguj sie</a></h2>";
             }
+        if($_SESSION['admin'] == 0){
         ?>
     </nav>
     <section class="info-one">
@@ -39,7 +45,7 @@
 
             <?php 
                 $wynik = mysqli_query($poloczenie, "SELECT * FROM `produkty`");
-                for($r = 0; $r < $wyk = mysqli_fetch_array($wynik); $r++){
+                for($r = 0  ; $r < $wyk = mysqli_fetch_array($wynik); $r++){
                     echo "<div id='item'>";
                         echo "<img src='data:image/png;base64," . base64_encode($wyk['obraz']) . "'>";
                         echo "<h3>{$wyk['nazwa']}</h3>";
@@ -71,8 +77,33 @@
  })
     </script>
     <?php 
-        mysqli_close($poloczenie);
-            var_dump($_SESSION);
+    //TUTAJ JEST ELSEEEEEEEEEE!!!!!!!!!!!!!!!!
+        }else{
+    ?>
+    </nav>
+    <section class="info-one">
+        <img src="png/makaron.png" id="ban" class="active">
+        <img src="png/mm.png" id="ban">
+    </section>
+    <section class="produkty">
+        <h1>twoje produkty</h1>
+          <div class="produ">
+
+            <?php 
+                $wynik = mysqli_query($poloczenie, "SELECT * FROM `produkty`");
+                for($r = 1; $r < $wyk = mysqli_fetch_array($wynik); $r++){
+                    echo "<div id='item'>";
+                        echo "<img src='data:image/png;base64," . base64_encode($wyk['obraz']) . "'>";
+                        echo "<h3>{$wyk['nazwa']}</h3>";
+                        echo "<p>{$wyk['koszt']} zł/sz</p>";
+                        echo "<p>{$wyk['opis']}</p>";
+                        $_SESSION['d'] = $r;
+                        echo "<form method='post' action='item.php'><button type='submit' name='button' value='{$r}'>Edytuj</button></form>";
+                    echo "</div>"; 
+                    $_SESSION['nazw'] = $wyk['nazwa'];
+                }
+            
+        }
     ?>
 </body>
 </html>

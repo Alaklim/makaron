@@ -180,3 +180,50 @@ input{
 .butt{
     margin-left: 40vw;
 }
+#wyg button{
+    float: right;
+    margin-right: 40px;
+    background-color: #ffff00e7;
+    border-radius: 15px;
+    padding: 4px;
+    margin-top: 20px;
+    border: none;
+    font-size: x-large;
+}
+.potwierdzenie button{
+    border: #4e350041 solid 1px;
+    background-color: #ffff7b;
+    color: #352400;
+    font-size: x-large;
+    height: 7vh;
+    width: 9vw;
+    border-radius: 15px;
+    margin-top: 5vh;
+    box-shadow: -1px 1px 10px 1px #4e350041;
+    transform: scale(0.8);
+    transition: .3s;
+    float: left;
+    margin-left:40vw;
+}
+.potwierdzenie button:hover{
+    transform: scale(0.9);
+}
+.format{
+    margin-top: 100vh;
+}
+.zFF{
+    margin-bottom: 20px;
+}
+.forek textarea{
+    width: 20vw;
+    height: 200px;
+    resize: none;
+}
+.forek input{
+    margin: 20px;
+    width: 10vw;
+    text-align: center;
+}
+.forek button{
+    margin-top: 3vh;
+}

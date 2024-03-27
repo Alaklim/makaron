@@ -21,6 +21,9 @@ nav{
     height: 90px;
     color: #4e3500;
 }
+/* h1{
+    margin-left: 42.5vw;
+} */
 .log{
     background-color: #ffffe9e7;
     border-radius: 20px;
@@ -43,7 +46,7 @@ input{
     font-size: x-large;
 }
 button{
-    height: 40px;
+    height: 50px;
     width: 100px;
     border-radius: 15px;
     margin-top: 20px;
@@ -62,4 +65,28 @@ button:hover{
 #rejest{
     width: 100px;
     height: 50px;
+}
+.pal label{
+    font-size: large;
+    color: #4e3500;
+}
+.pal input{
+    margin-top: 10px;
+    background-color: #ffffe9;
+    border-radius: 10px;
+    height: 25px;
+    font-size: x-large;
+    text-align: center;
+}
+.log-pal{
+    background-color: #ffffe9e7;
+    border-radius: 20px;
+    width: 20%;
+    height: 55vh;
+    margin-left: 40%;
+    margin-top: 5vh;
+    text-align: center;
+}
+.inf{
+    text-align: center;
 }

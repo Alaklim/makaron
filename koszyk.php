@@ -16,11 +16,12 @@
         $baza = 'makaronix'; 
 
         $poloczenie = mysqli_connect($serwer, $uzytkownik, $haslo, $baza);
+        error_reporting(0);
 ?>
 <body>
     <nav>
         <h1>MAKARONIX</h1>
-        <h2><a>koszyk</a></h2>
+        <h2><a href="strona_G.php">strona główna</a></h2>
     </nav>
 
     <section class="produkty">
@@ -28,20 +29,29 @@
         <div class="produ">
         <?php 
                 $wynik = mysqli_query($poloczenie, "SELECT * FROM `produkty`");
-                for($r = 1; $r < $wyk = mysqli_fetch_array($wynik); $r++){
+                $d = 0;
+                for($r = 0 ; $r < $wyk = mysqli_fetch_array($wynik); $r++){
+                    if($_SESSION['mk-'. $r +1 ] != 0 ){
                     echo "<div id='item'>";
                         echo "<img src='data:image/png;base64," . base64_encode($wyk['obraz']) . "'>";
                         echo "<h3>{$wyk['nazwa']}</h3>";
                         echo "<p>{$wyk['koszt']} zł/sz</p>";
-                        echo "<p>{$wyk['opis']}</p>";
-                        echo "<p>kupiłeś ".$_SESSION['mk-'. $r]. "szt. za "." zł</p>";
+                        echo "<p>{$wyk['opis']}</p>"; 
+                        echo "<p>kupiłeś ".$_SESSION['mk-'. $r +1]. "szt. za ".$_SESSION['m'. $r+1]. " zł</p>";
+                        $d += $_SESSION['m'. $r +1];
                         $_SESSION['d'] = $r;
                         echo "<form method='post' action='item.php'><button type='submit' name='button' value='{$r}'>Wejdz</button></form>";
                     echo "</div>"; 
-                }
+                    }else{
 
+                    }
+                }
+                $_SESSION['cash'] = $d;
             ?>
         </div>
     </section>
+    <div class="potwierdzenie">
+        <form method='post' action='cash.php'><button type='submit'>Przejdz do płatności</button></form>
+    </div>
 </body>
 </html>
